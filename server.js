@@ -43,4 +43,6 @@ const port = process.env.PORT || 8000;
 // START SERVER
 app.listen(port, () => {
   console.log(chalk.bgCyanBright.magentaBright(`Server Is Running On Port ${ port }`));
+  console.log(chalk.bgYellowBright(`Your API can be found at ${process.env.API_URL}:${ port }/api`));
+  console.log(chalk.bgGreen(`Your Client Application Can Be Found At ${process.env.CLIENT_URL}`));
 })
