@@ -4,6 +4,7 @@
   "description": "NodeJS and ExpressJS Backend",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "nodemon server.js"
   },
   "keywords": [
