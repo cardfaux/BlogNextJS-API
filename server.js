@@ -12,6 +12,7 @@ require('dotenv').config();
 const blogRoutes = require('./routes/blog');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
 
 // APP
 const app = express();
@@ -25,7 +26,9 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true
   })
-  .then(() => console.log(chalk.bgMagentaBright.cyanBright('DATABASE CONNECTED')));
+  .then(() => {
+    console.log(chalk.bgMagentaBright.cyanBright('DATABASE CONNECTED'))
+  });
 
 // MIDDLEWARES
 app.use(morgan('dev'));
@@ -38,6 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api', blogRoutes);
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', categoryRoutes);
 
 // PORT
 const port = process.env.PORT || 8000;
