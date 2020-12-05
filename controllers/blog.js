@@ -108,10 +108,10 @@ exports.list = (req, res) => {
     .populate('postedBy', '_id name username')
     .select('_id title slug excerpt categories tags postedBy createdAt updatedAt')
     .exec((err, data) => {
-      if (err) {
-        return res.json({
-          error: errorHandler(err)
-        });
+    if (err) {
+      return res.json({
+        error: errorHandler(err)
+      });
     }
       res.json(data);
     });
@@ -135,17 +135,17 @@ exports.listAllBlogsCategoriesTags = (req, res) => {
     .select('_id title slug excerpt categories tags postedBy createdAt updatedAt')
     .exec((err, data) => {
       if (err) {
-          return res.json({
-              error: errorHandler(err)
-          });
+        return res.json({
+          error: errorHandler(err)
+        });
       }
       blogs = data; // blogs
       // get all categories
       Category.find({}).exec((err, c) => {
         if (err) {
-          return res.json({
-            error: errorHandler(err)
-          });
+        return res.json({
+          error: errorHandler(err)
+        });
       }
         categories = c; // categories
         // get all tags
@@ -302,9 +302,9 @@ exports.listSearch = (req, res) => {
       },
       (err, blogs) => {
         if (err) {
-            return res.status(400).json({
-                error: errorHandler(err)
-            });
+          return res.status(400).json({
+            error: errorHandler(err)
+          });
         }
         res.json(blogs);
       }
