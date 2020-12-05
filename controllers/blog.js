@@ -29,7 +29,7 @@ exports.create = (req, res) => {
 
     if (!body || body.length < 200) {
       return res.status(400).json({
-        error: 'Content is too short'
+        error: 'Content is too short atleast 200 characters'
       });
     }
 
@@ -52,10 +52,16 @@ exports.create = (req, res) => {
     blog.slug = slugify(title).toLowerCase();
     blog.mtitle = `${title} | ${process.env.APP_NAME}`;
     blog.mdesc = stripHtml(body.substring(0, 160));
-    blog.postedBy = req.user._id;
+    //blog.postedBy = req.user._id;
+    blog.postedBy = req.auth._id;
     // categories and tags
     let arrayOfCategories = categories && categories.split(',');
     let arrayOfTags = tags && tags.split(',');
+
+    // console.log(req.auth);
+    // console.log(`${process.env.APP_NAME}`)
+    // console.log(`${title}`)
+    // console.log(`${body}`)
 
     if (files.photo) {
       if (files.photo.size > 10000000) {
@@ -67,13 +73,19 @@ exports.create = (req, res) => {
       blog.photo.contentType = files.photo.type;
     }
 
+    // try this to check if you are getting formdata from postman
+    //console.log(err, fields, files)
+
     blog.save((err, result) => {
       if (err) {
+        console.log('BLOG SAVE ERROR ====> ', err)
         return res.status(400).json({
           error: errorHandler(err)
+          //error: 'Blog save failed'
         });
       }
-      // res.json(result);
+      // console.log(result)
+      //res.json(result);
       Blog.findByIdAndUpdate(result._id, { $push: { categories: arrayOfCategories } }, { new: true }).exec(
         (err, result) => {
           if (err) {
