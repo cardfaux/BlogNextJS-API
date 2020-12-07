@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Blog = require('../models/blog');
 const { nanoid } = require('nanoid');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
