@@ -20,6 +20,7 @@
     "template-curly-spacing": ["off", "always"],
     "object-curly-spacing": ["warn", "always"],
     "comma-dangle": "off",
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "no-console": "warn"
   }
 }
