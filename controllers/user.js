@@ -30,17 +30,17 @@ exports.publicProfile = (req, res) => {
       .limit(10)
       .select('_id title slug excerpt categories tags postedBy createdAt updatedAt')
       .exec((err, data) => {
-          if (err) {
-            return res.status(400).json({
-              error: errorHandler(err)
-            });
-          }
-          user.photo = undefined;
-          user.hashed_password = undefined;
-          res.json({
-            user,
-            blogs: data
+        if (err) {
+          return res.status(400).json({
+            error: errorHandler(err)
           });
+        }
+        user.photo = undefined;
+        user.hashed_password = undefined;
+        res.json({
+          user,
+          blogs: data
+        });
       });
   });
 };
