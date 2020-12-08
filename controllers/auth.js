@@ -6,6 +6,7 @@ const expressJwt = require('express-jwt');
 const { errorHandler } = require('../helpers/dbErrorHandler');
 // sendgrid
 const sgMail = require('@sendgrid/mail'); // SENDGRID_API_KEY
+//const { getMaxListeners } = require('../models/user');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 exports.signup = (req, res) => {
@@ -148,7 +149,7 @@ exports.forgotPassword = (req, res) => {
       <p>${process.env.CLIENT_URL}/auth/password/reset/${token}</p>
       <hr />
       <p>This email may contain sensetive information</p>
-      <p>https://seoblog.com</p>
+      <p>https://jameshagood.tech</p>p
     `
     };
     // populating the db > user > resetPasswordLink
