@@ -261,9 +261,9 @@ exports.googleLogin = (req, res) => {
           const { _id, email, name, role, username } = user;
           return res.json({ token, user: { _id, email, name, role, username } });
         } else {
-          let username = shortId.generate();
+          let username = nanoid();
           let profile = `${process.env.CLIENT_URL}/profile/${username}`;
-          let password = jti;
+          let password = jti + process.env.JWT_SECRET;
           user = new User({ name, email, profile, username, password });
           user.save((err, data) => {
               if (err) {
