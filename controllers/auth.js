@@ -4,6 +4,7 @@ const { nanoid } = require('nanoid');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const { errorHandler } = require('../helpers/dbErrorHandler');
+const _ = require('lodash');
 // sendgrid
 const sgMail = require('@sendgrid/mail'); // SENDGRID_API_KEY
 //const { getMaxListeners } = require('../models/user');
