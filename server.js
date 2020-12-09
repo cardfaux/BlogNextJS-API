@@ -1,5 +1,5 @@
 const express = require('express');
-// const helmet = require("helmet");
+const helmet = require("helmet");
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -37,7 +37,7 @@ mongoose
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
-// app.use(helmet());
+app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
   app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
 }
