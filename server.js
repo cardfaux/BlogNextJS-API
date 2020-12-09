@@ -22,16 +22,16 @@ const app = express();
 
 
 // DATABASE CONNECTION
-// mongoose
-//   .connect(process.env.DATABASE_LOCAL, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-//     useFindAndModify: false,
-//     useUnifiedTopology: true
-//   })
-//   .then(() => {
-//     console.log(chalk.bgMagentaBright.cyanBright('DATABASE CONNECTED'))
-//   });
+mongoose
+  .connect(process.env.DATABASE_LOCAL, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log(chalk.bgMagentaBright.cyanBright('DATABASE CONNECTED'))
+  });
 
 // MIDDLEWARES
 app.use(morgan('dev'));
@@ -53,33 +53,8 @@ app.use('/api', formRoutes);
 const PORT = process.env.PORT || 8000;
 
 // START SERVER
-// app.listen(PORT, () => {
-//   console.log(chalk.bgCyanBright.magentaBright(`Server Is Running On Port ${ PORT }`));
-//   console.log(chalk.bgYellowBright(`Your API can be found at ${process.env.API_URL}:${ PORT }/api`));
-//   console.log(chalk.bgGreen(`Your Client Application Can Be Found At ${process.env.CLIENT_URL}`));
-// })
-
-mongoose
-  .connect(process.env.DATABASE_LOCAL, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    const server = app.listen(PORT, () => {
-      console.log(chalk.bgCyanBright.magentaBright(`Server Is Running On Port ${ PORT }`));
-      console.log(chalk.bgYellowBright(`Your API can be found at ${process.env.API_URL}:${ PORT }/api`));
-      console.log(chalk.bgGreen(`Your Client Application Can Be Found At ${process.env.CLIENT_URL}`));
-    })
-    const io = require('socket.io')(server);
-    io.on('connection', (socket) => {
-      console.log(chalk.bgWhiteBright.blueBright('CLIENT CONNECTED'));
-    })
-  })
-  .then(() => {
-    console.log(chalk.bgMagentaBright.cyanBright('DATABASE CONNECTED'))
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+app.listen(PORT, () => {
+  console.log(chalk.bgCyanBright.magentaBright(`Server Is Running On Port ${ PORT }`));
+  console.log(chalk.bgYellowBright(`Your API can be found at ${process.env.API_URL}:${ PORT }/api`));
+  console.log(chalk.bgGreen(`Your Client Application Can Be Found At ${process.env.CLIENT_URL}`));
+});
